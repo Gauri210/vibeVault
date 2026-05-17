@@ -1,6 +1,6 @@
-# 🎵 VibeVault — Music Streaming Database (SQL)
+# 🎵 VibeVault — Music Streaming Analytics Platform
 
-A relational database system designed to simulate the backend of a music streaming platform — modelling users, artists, songs, playlists, and listening behaviour. Built entirely in MySQL with a focus on schema design, business-driven queries, and performance optimization.
+A complete data analytics solution combining a relational MySQL database backend with an interactive Power BI dashboard. Models users, artists, songs, and listening behaviour with advanced analytics and visualization.
 
 ---
 
@@ -8,16 +8,17 @@ A relational database system designed to simulate the backend of a music streami
 
 | Detail | Info |
 |---|---|
-| **Database** | MySQL |
-| **Tables** | 15 |
+| **Database** | MySQL (15 tables) |
 | **Analytical Queries** | 10 |
 | **Views** | 2 |
 | **Indexes** | 5 |
-| **Domain** | Music / Entertainment |
+| **Visualization** | Power BI Dashboard |
+| **Dashboard Visuals** | 6 (KPI Cards, Bar Charts, Donut, Stacked Bar, Map) |
+| **Domain** | Music / Entertainment / Analytics |
 
 ---
 
-## 🗂️ Schema Design
+## 🗂️ Database Schema Design
 
 The database models a complete music streaming ecosystem across 15 tables:
 
@@ -72,7 +73,84 @@ The database models a complete music streaming ecosystem across 15 tables:
 
 ---
 
-## 🚀 How to Run
+## 📊 Power BI Analytics Dashboard
+
+### Key Performance Indicators
+
+| Metric | Value | Business Context |
+|--------|-------|------------------|
+| Active Users | 200 | Platform user base |
+| Avg. Session Duration | 3.16 min | User engagement indicator |
+| Total Streams | 2,000 | Content consumption metric |
+| Premium Conversion Rate | 33% | Revenue stream indicator |
+
+### Dashboard Components
+
+**KPI Cards (Row 1)**
+- Total Users: 200
+- Avg Listening Time: 3.16 min
+- Total Streams: 2,000
+- Premium Users: 33%
+
+**Analytical Visualizations (Rows 2-3)**
+
+**Top Songs Chart**
+- Horizontal bar chart ranked by stream count
+- Free Blue Vibes leads with 21 streams
+- Data labels for precise values
+
+**Top Artists Chart**
+- Artist ranking by follower count
+- BTS dominates with 25 followers
+- Green color scheme for distinction
+
+**Subscription Mix (Donut Chart)**
+- Free: 55.65%
+- Premium: 32.5%
+- Family: 11.85%
+- Percentage labels for clarity
+
+**Streams by Device (Stacked Bar)**
+- Mobile: 54% (804 streams)
+- Desktop: 39% (584 streams)
+- Smart TV: 21% (306 streams)
+- Subscription type breakdown within each device
+
+**Geographic Distribution (Bubble Map)**
+- North America: 450 streams
+- Europe: 380 streams
+- Asia-Pacific: 320 streams
+- Interactive zoom capability
+
+### Dashboard Features
+
+- **Professional Design:** Dark blue header, white backgrounds, light gray borders
+- **Consistent Coloring:** Blue for songs/premium, green for artists, amber/cyan/purple for subscriptions
+- **Data Accuracy:** All values pulled directly from MySQL database via Power BI
+- **Interactive Filtering:** Optional slicers for date range, subscription type, and device type
+- **Quick Insights:** Numbers visible on all charts, no need for legend lookups
+
+---
+
+## 💡 Key Design Decisions
+
+**Database Layer:**
+- Listening sessions stored as individual events rather than aggregates — enabling flexible time-based and device-based analysis
+- Song features (featured artists) separated from primary artist to avoid redundancy and support many-to-many querying
+- Privacy settings on playlists enable access-control simulation similar to real platforms
+- Audio formats stored as a separate table to support multiple formats per song without denormalization
+
+**Analytics Layer:**
+- Aggregations performed in Power BI for flexibility and maintainability
+- Color scheme standardized across all charts for visual consistency
+- KPI cards placed prominently for quick decision support
+- Geographic analysis included to identify market opportunities
+
+---
+
+## 🚀 Setup Instructions
+
+### Database Setup
 
 1. Open MySQL Workbench or any MySQL client
 2. Run the full `VibeVault.sql` file:
@@ -88,11 +166,15 @@ SOURCE VibeVault.sql;
    - Execute the 10 analytical queries
    - Create views and indexes
 
----
+### Power BI Configuration
 
-## 🛠️ Tech Stack
-
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+1. Open `vibevault.pbix` in Power BI Desktop
+2. Configure MySQL connection:
+   - Server: localhost (or your MySQL server)
+   - Database: VibeVault
+   - Username: your MySQL user
+3. Refresh all data to populate the dashboard
+4. Interact with visualizations and explore insights
 
 ---
 
@@ -100,16 +182,18 @@ SOURCE VibeVault.sql;
 
 ```
 vibeVault/
-├── VibeVault.sql       # Full database script (schema + data + queries)
-├── ER DIAGRAM.png      # Entity-Relationship diagram
+├── VibeVault.sql              # Full database script (schema + data + queries)
+├── ER DIAGRAM.png             # Entity-Relationship diagram
+├── vibevault.pbix             # Power BI dashboard file
+├── Dashboard_Preview.png      # Static dashboard screenshot
 └── README.md
 ```
 
 ---
 
-## 💡 Key Design Decisions
+## 🛠️ Tech Stack
 
-- Listening sessions are stored as individual events rather than aggregates — enabling flexible time-based and device-based analysis
-- Song features (featured artists) are separated from primary artist to avoid redundancy and support many-to-many querying
-- Privacy settings on playlists enable access-control simulation similar to real platforms
-- Audio formats are stored as a separate table to support multiple formats per song without denormalization
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
+
+---
